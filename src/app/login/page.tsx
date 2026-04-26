@@ -24,7 +24,8 @@ export default function LoginPage() {
 
     const body = await response.json();
     if (!response.ok) {
-      setMessage(body?.message ?? "Unable to save user details.");
+      const errorDetails = body?.error ? ` (${body.error})` : "";
+      setMessage((body?.message ?? "Unable to save user details.") + errorDetails);
     } else {
       setMessage(body?.message ?? "Saved successfully.");
       router.push("/dashboard");
