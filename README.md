@@ -28,6 +28,7 @@ Backend: PostgreSQL (inspect/manage with pgAdmin)
 ## API Routes
 
 - `GET /api/init` Create required DB tables
+- `GET /api/health` Check backend + DB connection status
 - `GET /api/testcases` Get all test cases
 - `POST /api/testcases` Create new test case
 - `PUT /api/testcases/:id` Update test case
@@ -58,6 +59,26 @@ npm run dev
 ```
 
 Open `http://localhost:3000`.
+
+## Deploy Backend (Recommended: Vercel + Neon PostgreSQL)
+
+This project is a Next.js full-stack app, so deploying the app also deploys your backend API routes.
+
+1. Create a hosted Postgres database (Neon/Supabase/Railway).
+2. Copy the connection string and ensure SSL is enabled (`sslmode=require` for Neon/Supabase).
+3. Push your code to GitHub.
+4. Import the repo into Vercel.
+5. In Vercel project settings, add environment variables:
+	- `DATABASE_URL` = your hosted Postgres URL
+	- `NEXT_PUBLIC_APP_URL` = your deployed app URL (optional)
+6. Deploy.
+7. After deployment, initialize tables once:
+	- Open `https://<your-domain>/api/init`
+8. Verify backend health:
+	- Open `https://<your-domain>/api/health`
+	- Expected response includes `"status":"ok"` and `"database":"connected"`.
+
+If `api/health` fails, verify `DATABASE_URL` and database network rules (allow connections from Vercel).
 
 ## Notes
 
