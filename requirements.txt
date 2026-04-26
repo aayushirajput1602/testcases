@@ -1,0 +1,17 @@
+# Project requirements for deployment
+
+Node.js >= 18
+Next.js 16.2.4
+React 19.2.4
+React DOM 19.2.4
+pg >= 8.16.3
+xlsx >= 0.18.5
+
+# Environment variables
+DATABASE_URL=<your_postgres_connection_string>
+NEXT_PUBLIC_APP_URL=<your_deployed_app_url>
+
+# Notes
+# - This is a Node.js project, so package.json is the source of truth for npm dependencies.
+# - Use a hosted PostgreSQL database for production deployments.
+# - Localhost DATABASE_URL works only for local development.
