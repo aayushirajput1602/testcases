@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbfffb;
+  --foreground: #0e2a1f;
+  --card: #ffffff;
+  --muted: #e6f5e9;
+  --primary: #1f7a45;
+  --primary-foreground: #ffffff;
+  --border: #cde8d4;
+  --header-bg: #145c34;
+  --header-foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+.dark {
+  --background: #08140e;
+  --foreground: #d9f5df;
+  --card: #10251b;
+  --muted: #163528;
+  --primary: #64d08e;
+  --primary-foreground: #0b1f15;
+  --border: #25533c;
+  --header-bg: var(--card);
+  --header-foreground: var(--foreground);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: 0.85rem;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translate3d(0, 20px, 0) scale(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.35;
+  }
+  75% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate3d(0, -40px, 0) scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleDrift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.live-bubbles {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.live-bubble {
+  position: absolute;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.85), rgba(132, 224, 174, 0.28));
+  animation-name: bubbleRise, bubbleDrift;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+.bubble-1 {
+  left: 8%;
+  bottom: -40px;
+  width: 82px;
+  height: 82px;
+  animation-duration: 11s, 6s;
+}
+
+.bubble-2 {
+  left: 24%;
+  bottom: -30px;
+  width: 52px;
+  height: 52px;
+  animation-duration: 9s, 5s;
+  animation-delay: 1s;
+}
+
+.bubble-3 {
+  right: 20%;
+  bottom: -35px;
+  width: 72px;
+  height: 72px;
+  animation-duration: 10s, 6s;
+  animation-delay: 2s;
+}
+
+.bubble-4 {
+  right: 8%;
+  bottom: -24px;
+  width: 44px;
+  height: 44px;
+  animation-duration: 8s, 4s;
+  animation-delay: 0.5s;
+}
+
+.bubble-5 {
+  left: 50%;
+  bottom: -32px;
+  width: 62px;
+  height: 62px;
+  animation-duration: 12s, 7s;
+  animation-delay: 1.5s;
+}
+
+.dark .live-bubble {
+  background: radial-gradient(circle at 30% 30%, rgba(189, 248, 215, 0.35), rgba(62, 139, 95, 0.14));
+}
